@@ -1,0 +1,180 @@
+20/2/2023 :
+
+
+User:
+
+useradd huy1 : tạo user huy1
+usermod [option] [username] : sửa thông tin user với các option
+userdel [option] huy1 : xóa thông tin user huy1
+các option :
+
+-c: “Thông tin người dùng”
+-d: [Thư mục cá nhân]
+-m: Tạo thư mục cá nhân nếu chưa tồn tại
+-g: [nhóm của người dùng]
+
+
+
+
+
+Group:
+
+groupadd [groupname] : tạo group
+groupdel [groupname] : xóa group
+
+
+
+Thao tác với file :
+
+ls [option]:lấy danh sách tất cả các file và thư mục trong thư mục hiện hành
+
+-l option: hiện file/đường dẫn, ngày thay đổi, tên file, permission...
+-a option: hiện tất cả các file/thư mục, bao gồm các file/thư mục ẩn
+-F option: thêm ký tự / vào cuối mỗi thư mục
+-r: hiển thị theo thứ tự ngược (abc)
+-R: hiển thị toàn bộ danh sách cây thư mục với nút cha là thư mục hiện tại
+--help: trợ giúp lệnh ls
+
+
+pwd: hiển thị đường dẫn thư mục hiện tại
+mkdir test1 : tạo thư mục test1
+cd test1 : thay đổi thư mục làm việc đến thư mục test1
+touch 1.txt : tạo tệp tin 1.txt
+echo "..." > 1.txt : thêm nội dung trong ngoặc vào tệp tin 1.txt
+rm -r test1 : xóa thư mục test1
+chmod -R 700 /var/www : user có quyền read, write,execute trong khi đó group và others không có quyền gì.
+chown -R huy1:admin /var/www : chuyển quyền sở hữu thư mục cho huy1
+
+
+
+Các câu lệnh kiểm tra cấu hình máy :
+
+lscpu : cung cấp thông tin về cpu
+lspci : liệt kê tất cả các bus PCI và thông tin chi tiết về các thiết bị được kết nối với chúng chẳng hạn như bộ chuyển đổi VGA, card đồ họa, card mạng, các cổng USB, bộ điều khiển SATA,...
+lsusb : hiển thị các bộ điều khiển USB và chi tiết về các thiết bị được kết nối với chúng
+
+
+
+Cấu trúc thư mục :
+
+
+/: Thư mục root: trong thư mục root chứa các thư mục sau :
+
+/bin - User Binaries (Các tập tin nhị phân của người dùng)
+Lệnh Linux phổ biến sử dụng ở chế độ Singer-user mode nằm trong thư mục này
+Các lệnh được sử dụng bởi tất cả người dùng của hệ thống được đặt ở đây. Ví dụ: ps, ls, ping, grep, cp.
+/sbin – System Binaries (Các tập tin nhị phân của hệ thống )
+Cũng giống như /bin, /sbin cũng chứa các tập tin thực thi nhị phân. Tuy nhiên, các lệnh đặt trong thư mục này được sử
+dụng thường bởi người quản trị hệ thống, với mục đích bảo trì hệ thống.
+/etc – Configuration Files
+Chứa cấu hình các tập tin cấu hình của hệ thống, các tập tin lệnh để khởi động các dịch vụ của hệ thống
+
+/etc/shadow: lưu trữ mật khẩu đã được mã hóa và chỉ có superuser mới có quyền đọc.
+/etc/passwd: lưu thông tin về tất cả các user
+/etc/group: lưu trữ danh sách các grou
+
+
+/dev – Files device
+Chứa các tập tin để nhận biết cho các thiết bị của hệ thống (device files).
+Bao gồm thiết bị đầu cuối, USB hoặc các thiết bị được gắn trên hệ thống
+/proc – Process Information (Thông tin về tiến trình)
+Chứa các thông tin về System Process.
+/var – Variable Files (Các tập tin tham biến)
+Các tập tin mà nội dung được dự kiến sẽ thay đổi thì được đặt trong thư mục này. Bao gồm – các tập tin đăng nhập hệ
+thống (/var/log); các gói và các tập tin cơ sở dữ liệu (/var/lib), email (thư mục /var/mail); hàng đợi in
+(/var/spool), tập tin khóa (/var/lock) ; các tập tin tạm cần thiết để khởi động lại (/var/tmp)
+/tmp – Temporary Files (Các tập tin tạm thời)
+Thư mục chứa các tập tin tạm thời được tạo ra bởi hệ thống và người dùng.
+Các tập tin trong thư mục này sẽ bị xóa khi hệ thống khởi động lại
+/usr – User Programs
+Bao gồm các tập tin nhị phân, thư viện, tài liệu, và mã nguồn cho các chương trình cấp thứ hai.
+
+/usr/bin: chứa các tập tin nhị phân cho các chương trình cấp người dùng. Nếu bạn không thể tìm thấy một tập tin nhị phân
+cấp người dùng trong /bin, hãy tìm trong /usr/bin.
+/usr/sbin: chứa các tập tin nhị phân cho người quản trị hệ thống. Nếu bạn không thể tìm thấy một tập tin nhị phân cấp hệ
+thống trong /sbin, hãy tìm trong /usr/sbin. Ví dụ: atd, cron, sshd, useradd, userdel
+/usr/lib: chứa các thư viện cho /usr/bin và /usr/sbin
+/usr/local: bao gồm các chương trình user mà đã được cài đặt từ mã nguồn. Ví dụ, khi bạn cài đặt apache từ mã nguồn, nó
+được đặt trong /usr/local/apache2
+
+
+/home – thư mục Home
+Thư mục chính lưu trữ các tập tin cá nhân của tất cả user.
+/boot – Boot Loader Files
+Chứa các tập tin cấu hình cho quá trình khởi động hệ thống.
+/lib - System Libraries
+Chứa các file thư viện hỗ trợ các thư mục nằm dưới /bin và /sbin.
+
+
+
+Lệnh apt :
+
+sudo apt install packagename : cài đặt gói
+sudo apt depends packagename : hiển thị tất cả thông tin về các phụ thuộc của một gói
+sudo apt search packagename : tìm kiếm gói
+sudo apt show packagename : xem thông tin gói
+sudo apt update : cập nhật các gói hệ thống
+sudo apt upgrade : nâng cấp hệ thống
+sudo apt autoremove : loại bỏ các gói ko sử dụng
+21/2/2023
+
+
+Lệnh ps:
+
+ps : liệt kê tiến trình hiện tại của trình shell
+ps -c command_name : tìm tiến trình bằng tên
+ps aux: liệt kê tất cả các tiến trình đang chạy
+ps -A : liệt kê các tiến trình đang chạy
+kill pid : kill tiến trình
+
+
+
+Lệnh top:
+
+dòng 1 : [thời gian hiện tại][thời gian up time][số lượng người dùng][trung bình tải hiển thị tgian load hệ thống trong 1p 5p và 15p cuối]
+dòng 2 : [số tác vụ][số tác vụ đang chạy][số tác vụ đang ngủ][số tác vụ đã dừng][số tác vụ zombie]
+dòng 3 : phần trăm sử dụng cpu
+dòng 4 : quản lý bộ nhớ : [tổng dung lượng bộ nhớ][dung lượng còn trống][dung lượng đã sử dụng][dung lượng bộ nhớ đệm cache]
+dòng 5 : quản lý swap : [tổng swap có sẵn][swap còn trống][swap đã sử dụng][dụng lượng bộ nhớ khả dụng]
+bảng chính : các tiến trình-
+
+
+
+lệnh systemctl :
+
+sudo systemctl list-units --type service : liệt kê các service đã load trong hệ thống :
+[UNIT][LOAD][ACTIVE][SUB][DESCRIPTION]
+
+UNIT : là tên của service
+LOAD : trạng thái của service đã load vào bộ nhớ chưa
+ACTIVE : trạng thái hoạt động của service : [active], [inactive], [failed],...
+SUB : trạng thái hoạt động phụ của service : [running, exited], [dead], [failed],..
+DESCRIPTION : phần mô tả ngắn gọn về service
+
+
+sudo systemctl list-units : lấy danh sách tất cả các unit đang chạy
+sudo systemctl list-units-files : lấy danh sách tất cả các unit đang có sẵn
+sudo systemctl restart/start/stop/enable/disable/reload/kill/status service_name : thao tác với service
+sudo systemctl is-active/is-enabled service_name : kiểm tra xem service có hoạt động hay tự khởi động ko
+
+
+
+Quá trình khởi động của Linux :
+
+Bước 1 : BIOS
+là chương trình chạy đầu tiên khi nhấn nút nguồn hoặc nút reset trên máy tính của bạn.
+BIOS thực hiện một công việc gọi là POST ( Power-on Self-test) kiểm tra các thông số của các phần cứng của máy tính. Ngoài ra , BIOS cho phép thay đổi các thiết lập, cấu hình của nó.
+Quá trình POST kết thúc thành công, BIOS sẽ tìm kiếm và khởi chạy một hệ điều hành được chứa trong các thiết bị lưu trữ như ổ cứng…
+Hệ điều hành Linux được cài trên ổ cứng thì BIOS sẽ tìm đến MBR (Master Boot Record
+Bước 2 : Master Boot Record
+Sau khi BIOS xác định được thiết bị lưu trữ thì BIOS sẽ đọc trong MBR của thiết bị này để nạp vào bộ nhớ một chương trình. Chương trình này sẽ định vị và khởi động boot loader – đây là chương trình chịu trách nhiệm cho việc tìm và nạp nhân của hệ điều hành.
+Bước 3 : Boot Loader
+Chương trình này cho phép chọn hệ điều hành có trên máy tính để khởi động, sau đó chúng sẽ nạp kernel của hệ điều hành đó vào bộ nhớ và chuyển quyền điều khiển cho kernel đó
+Bước 4 : Kernel đc nạp vào bộ nhớ và chạy
+Boot loader nạp 1 phiên bản dạng nén của hệ điều hành. Nó sẽ tự giải nén và tự cài đặt lên bộ nhớ nơi mà nó sẽ ở cho đến khi tắt máy.
+Sau khi chọn kernel trong file cấu hình của boot loader, hệ thống sẽ tự động nạp chương trình init trong thư mục /sbin.
+Bước 5 : Các script trong INITRD thực thi
+Bước 6 : Chương trình init thực thi
+Bước 7 : Đăng nhập với giao diện đồ họa
+Nhập user, password
+Bước 8 : Đăng nhập thành công vào hệ thống
